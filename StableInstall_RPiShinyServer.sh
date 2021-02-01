@@ -100,6 +100,45 @@ sudo apt-get -y install git
 cd /srv/shiny-server/
 git clone https://github.com/Nature40/shinySensoTrail.git
 
+# Setting up wireless access point
+sudo apt-get -y install hostapd
+
+sudo systemctl unmask hostapd
+sudo systemctl enable hostapd
+
+sudo apt-get -y install dnsmasq
+
+sudo DEBIAN_FRONTEND=noninteractive apt install -y netfilter-persistent iptables-persistent
+
+sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
+
+#sudo nano /etc/dnsmasq.conf
+# Adding text to dnsmasq.conf
+sudo tee -a /etc/dnsmasq.conf > /dev/null <<EOT
+interface=wlan0
+dhcp-range=192.168.4.2,192.168.4.20,255.255.255.0,24h
+domain=wlan
+address=/gw.wlan/192.168.4.1
+EOT
+
+sudo rfkill unblock wlan
+
+sudo tee -a /etc/hostapd/hostapd.conf > /dev/null <<EOT
+country_code=DE
+interface=wlan0
+ssid=shinyPi
+hw_mode=g
+channel=7
+macaddr_acl=0
+auth_algs=1
+ignore_broadcast_ssid=0
+wpa=2
+wpa_passphrase=shinyTestPWRPi
+wpa_key_mgmt=WPA-PSK
+wpa_pairwise=TKIP
+rsn_pairwise=CCMP
+EOT
+
 # Start Shiny Server
 #sudo shiny-server &
 
