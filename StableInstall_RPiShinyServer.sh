@@ -1,4 +1,4 @@
-# Install R Shiny Server (stable) on Raspberry Pi 3, tested January 24, 2021
+8# Install R Shiny Server (stable) on Raspberry Pi 3, tested January 24, 2021
 # As per: 
 # - https://github.com/rstudio/shiny-server/issues/347
 # - https://www.rstudio.com/products/shiny/download-server/
@@ -23,11 +23,18 @@ sudo apt-get -y install libssl-dev libcurl4-openssl-dev libboost-atomic-dev
 sudo apt-get -y remove pandoc
 sudo apt-get -y install pandoc
 
+# Install libxml2-dev
+sudo apt-get -y install libxml2-dev
+
 # Install R Packages
 sudo su - -c "R -e \"install.packages('httpuv', repos='https://cran.rstudio.com/')\""
 sudo su - -c "R -e \"install.packages('shiny', repos='https://cran.rstudio.com/')\""
 sudo su - -c "R -e \"install.packages('plotly', repos='https://cran.rstudio.com/')\""
 sudo su - -c "R -e \"install.packages('rmarkdown', repos='https://cran.rstudio.com/')\""
+sudo su - -c "R -e \"install.packages('shinydashboard', repos='https://cran.rstudio.com/')\""
+sudo su - -c "R -e \"install.packages('shinydashboardPlus', repos='https://cran.rstudio.com/')\""
+sudo su - -c "R -e \"install.packages('png', repos='https://cran.rstudio.com/')\""
+sudo su - -c "R -e \"install.packages('dygraphs', repos='https://cran.rstudio.com/')\""
 
 # Install cmake: https://github.com/rstudio/shiny-server/wiki/Building-Shiny-Server-from-Source#what-if-a-sufficiently-recent-version-of-cmake-isnt-available
 sudo apt-get -y install cmake
@@ -89,7 +96,7 @@ sudo cp samples/welcome.html /srv/shiny-server/index.html
 sudo cp -r samples/sample-apps/ /srv/shiny-server/
 
 # Start Shiny Server
-sudo shiny-server &
+#sudo shiny-server &
 
 # Return to home directory
 cd
