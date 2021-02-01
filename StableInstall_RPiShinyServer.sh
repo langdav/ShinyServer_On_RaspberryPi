@@ -95,10 +95,10 @@ sudo systemctl enable shiny-server.service
 sudo cp samples/welcome.html /srv/shiny-server/index.html
 sudo cp -r samples/sample-apps/ /srv/shiny-server/
 
-# Clone shinySensoTrail vom GitHub
-sudo apt-get -y install git
-cd /srv/shiny-server/
-git clone https://github.com/Nature40/shinySensoTrail.git
+# Clone shinySensoTrail vom GitHub; REQUIRES USERNAME AND PASSOWRD!!
+#sudo apt-get -y install git
+#cd /srv/shiny-server/
+#sudo git clone https://github.com/Nature40/shinySensoTrail.git
 
 # Setting up wireless access point
 sudo apt-get -y install hostapd
@@ -139,8 +139,10 @@ wpa_pairwise=TKIP
 rsn_pairwise=CCMP
 EOT
 
+# Reboot
+sudo systemctl reboot
 # Start Shiny Server
 #sudo shiny-server &
 
 # Return to home directory
-cd
+#cd
