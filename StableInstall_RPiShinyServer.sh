@@ -95,6 +95,11 @@ sudo systemctl enable shiny-server.service
 sudo cp samples/welcome.html /srv/shiny-server/index.html
 sudo cp -r samples/sample-apps/ /srv/shiny-server/
 
+# Clone shinySensoTrail vom GitHub
+sudo apt-get -y install git
+cd /srv/shiny-server/
+git clone https://github.com/Nature40/shinySensoTrail.git
+
 # Start Shiny Server
 #sudo shiny-server &
 
