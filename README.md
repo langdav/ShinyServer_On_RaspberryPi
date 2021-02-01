@@ -28,7 +28,7 @@ These scripts are provided "as is" with no warranty of any kind. As such, users 
 
 The provided Stable_RPiShinyServer.sh script will install the latest Shiny Server distribution along with the stable R version via the following command (N.B. the script takes awhile to run due to the R library installations):
 ```bash
-wget -O - https://raw.githubusercontent.com/pjaselin/ShinyServer_On_RaspberryPi/master/StableInstall_RPiShinyServer.sh | bash
+wget -O - https://raw.githubusercontent.com/langdav/ShinyServer_On_RaspberryPi/master/StableInstall_RPiShinyServer.sh | bash
 ```
 
 ## Installation with Backport R
