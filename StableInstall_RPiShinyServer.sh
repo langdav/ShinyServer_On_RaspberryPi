@@ -1,4 +1,4 @@
-8# Install R Shiny Server (stable) on Raspberry Pi 3, tested January 24, 2021
+# Install R Shiny Server (stable) on Raspberry Pi 3, tested January 24, 2021
 # As per: 
 # - https://github.com/rstudio/shiny-server/issues/347
 # - https://www.rstudio.com/products/shiny/download-server/
