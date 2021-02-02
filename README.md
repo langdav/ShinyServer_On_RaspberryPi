@@ -1,28 +1,32 @@
-# Install Shiny Server on Raspberry Pi with R
+# Setting up a Raspberry Pi as wireless access point, that hosts a shiny server
 
-If you want to use place a Shiny Server on a Raspberry Pi, 1) yes the RPi can handle it! 2) these scripts will allow you to do it effortlessly. Regarding the performance of a Shiny Server on a Raspberry Pi, the device seems to handle it quite well and I haven't seen significant processing/speed issues.
+## Note
+
+The majority of this script is based on the work from [pjaselin](https://github.com/pjaselin/ShinyServer_On_RaspberryPi). This includes:
+- Handling system library dependencies for installing and running a Shiny Server
+- Installing all R packages required for Shiny Server to start and index.html to successfully open
+- Editing external/node/install-node.sh to obtain the correct NodeJS installation for a Raspberry Pi
+- Building Shiny Server via packaging/make-package.sh
+- Configuring Shiny Server, sets up initial server applications, and places all the required system directories
+- Resolving Pandoc issues arising from Shiny Server using it's packaged Pandoc distribution by removing this directory and giving the system-installed version precedence
+
+Additional tasks, that are solved in the script, are:
+- Installation of additional R-packages (shinydashboard, shinydashboardPlus, png, dygraphs)
+- Setting up the Pi as a wireless access point; devices can connect directly to the Pi in order to see the shiny-App hosted by the Pi, without the need for a network connection
 
 ## Contents
 - [Warnings](#Warnings)
-- [Inportant Tasks Solved in the Script](#Important-Tasks-Solved-in-the-Script)
 - [Installation with Stable R](#Installation-with-Stable-R)
 - [Installation with Backport R](#Installation-with-Backport-R)
 - [Uninstall Shiny-Server and R](#Uninstall-Shiny-Server-and-R)
-- [Future Maintenance](#Future-Maintenance)
+- [Get your App onto the shiny server](#Get-your-App-onto-the-shiny-server)
+- [Start/Stop the shiny server](#Start/Stop-the-shiny-server)
+- [Connect to the Pi and see the App](#Connect-to-the-Pi-and-see-the-App)
+
 
 
 ## Warnings
-These scripts are provided "as is" with no warranty of any kind. As such, users should read the script to ensure they are confident in its integrity. The script is well contained and should not interfere with anything on the RPi beyond Shiny Server-related tasks. These have been tested and are known to work as of January 24, 2021.
-
-
-## Important Tasks Solved in the Script
-- Handles system library dependencies for installing and running a Shiny Server
-- Installs all R packages required for Shiny Server to start and index.html to successfully open
-- Edits external/node/install-node.sh to obtain the correct NodeJS installation for a Raspberry Pi
-- Builds Shiny Server via packaging/make-package.sh
-- Configures Shiny Server, sets up initial server applications, and places all the required system directories
-- Resolves Pandoc issues arising from Shiny Server using it's packaged Pandoc distribution by removing this directory and giving the system-installed version precedence
-
+These scripts are provided "as is" with no warranty of any kind. As such, users should read the script to ensure they are confident in its integrity. The script is well contained and should not interfere with anything on the RPi beyond Shiny Server-related tasks. These have been tested and are known to work as of January 24, 2021 (forked script by [pjaselin](https://github.com/pjaselin/ShinyServer_On_RaspberryPi)) and February 02, 2021 (complete script).
 
 ## Installation with Stable R
 
@@ -73,6 +77,29 @@ wget -O - https://raw.githubusercontent.com/pjaselin/ShinyServer_On_RaspberryPi/
 ```
 If you would only like to remove Shiny Server, please look into this script and only use what you need.
 
+## Get your App onto the shiny server
 
-## Future Maintenance
-I will try to keep this updated as the Shiny Server repo develops. Please submit issues if you run into problems and I'll do my best to make changes to the script as necessary. PRs are also welcome!
+### Copy App data by using a removable thumb drive
+replace NAME_OF_REMOVABLE_DRIVE with name of your drive (without '')
+replace NAME_OF_APP with name of your folder (without '')
+```bash
+sudo cp -R /media/pi/'NAME_OF_REMOVABLE_DRIVE'/'NAME_OF_APP' /srv/shiny-server
+```
+
+## Start/Stop the shiny server
+### Starting the server
+```bash
+sudo systemctl start shiny-server
+```
+You need to enter you user password
+
+### Stopping the server
+```bash
+sudo systemctl stop shiny-server
+```
+You need to enter you user password
+
+
+## Connect to the Pi and see the App
+Connect to the Pi with any wireless device (SSID 'shinyPi'; PW 'shinyTestPWRPi' (the password will be removed in the final version)).
+Open your internet browser and go to '192.168.4.1:3838/"NAME_OF_APP"/' (replace "NAME_OF_APP" with the name of you app without "")

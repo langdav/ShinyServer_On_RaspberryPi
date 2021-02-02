@@ -150,9 +150,3 @@ EOT
 
 # Reboot
 sudo systemctl reboot
-
-# Start Shiny Server
-#sudo systemctl start shiny-server
-
-# copy shiny App from removable drive; replace NAME_OF_REMOVABLE_DRIVE with name of your drive
-#sudo cp -R /media/pi/NAME_OF_REMOVABLE_DRIVE/shinySensoTrail /srv/shiny-server
