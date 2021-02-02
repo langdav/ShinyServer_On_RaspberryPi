@@ -100,18 +100,23 @@ sudo cp -r samples/sample-apps/ /srv/shiny-server/
 #cd /srv/shiny-server/
 #sudo git clone https://github.com/Nature40/shinySensoTrail.git
 
-# Setting up wireless access point
+#####
+### Setting up wireless access point ###
+#####
+# Install the access point and network management software
 sudo apt-get -y install hostapd
 
+# Enable the wireless access point service and set it to start when your Raspberry Pi boots
 sudo systemctl unmask hostapd
 sudo systemctl enable hostapd
 
+# install dnsmasq software package
 sudo apt-get -y install dnsmasq
 
+# install netfilter-persistent and its plugin iptables-persistent
 sudo DEBIAN_FRONTEND=noninteractive apt install -y netfilter-persistent iptables-persistent
 
 # Define the wireless interface IP configuration
-
 sudo tee -a /etc/dhcpcd.conf > /dev/null <<EOT
 
 interface wlan0
@@ -119,9 +124,10 @@ interface wlan0
     nohook wpa_supplicant
 EOT
 
+# Configure the DHCP and DNS services for the wireless network
+# rename the default configuration file and edit a new one
 sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
 
-#sudo nano /etc/dnsmasq.conf
 # Adding text to dnsmasq.conf
 sudo tee -a /etc/dnsmasq.conf > /dev/null <<EOT
 interface=wlan0
@@ -130,8 +136,10 @@ domain=wlan
 address=/gw.wlan/192.168.4.1
 EOT
 
+# ensure WiFi radio is not blocked on the Pi
 sudo rfkill unblock wlan
 
+# Configure the access point software (country code for germany)
 sudo tee -a /etc/hostapd/hostapd.conf > /dev/null <<EOT
 country_code=DE
 interface=wlan0
