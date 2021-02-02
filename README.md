@@ -12,7 +12,7 @@ The majority of this script is based on the work from [pjaselin](https://github.
 
 Additional tasks, that are solved in the script, are:
 - Installation of additional R-packages (shinydashboard, shinydashboardPlus, png, dygraphs)
-- Setting up the Pi as a wireless access point; devices can connect directly to the Pi in order to see the shiny-App hosted by the Pi, without the need for a network connection
+- Setting up the Pi as a wireless access point; devices can connect directly to the Pi in order to see the shiny-App hosted by the Pi, without the need for a network connection (sourced from [raspberrypi.org](https://www.raspberrypi.org/documentation/configuration/wireless/access-point-routed.md))
 
 ## Contents
 - [Warnings](#Warnings)
