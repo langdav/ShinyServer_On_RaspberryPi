@@ -110,6 +110,15 @@ sudo apt-get -y install dnsmasq
 
 sudo DEBIAN_FRONTEND=noninteractive apt install -y netfilter-persistent iptables-persistent
 
+# Define the wireless interface IP configuration
+
+sudo tee -a /etc/dhcpcd.conf > /dev/null <<EOT
+
+interface wlan0
+    static ip_address=192.168.4.1/24
+    nohook wpa_supplicant
+EOT
+
 sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
 
 #sudo nano /etc/dnsmasq.conf
