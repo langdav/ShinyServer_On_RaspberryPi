@@ -101,5 +101,5 @@ You need to enter you user password
 
 
 ## Connect to the Pi and see the App
-- Connect to the Pi with any wireless device (SSID: shinyPi; PW: shinyTestPWRPi (the password will be removed in the final version)).
-- Open your internet browser and go to "192.168.4.1:3838/NAME_OF_APP/" (replace "NAME_OF_APP" with the name of your app)
+- Connect to the Pi with any wireless device (SSID: *shinyPi*; PW: *shinyTestPWRPi* (the password will be removed in the final version)).
+- Open your internet browser and go to *192.168.4.1:3838/NAME_OF_APP/* (replace "NAME_OF_APP" with the name of your app)
