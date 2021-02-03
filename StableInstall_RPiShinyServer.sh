@@ -124,7 +124,7 @@ interface wlan0
     nohook wpa_supplicant
 EOT
 
-# Configure the DHCP and DNS services for the wireless network
+## Configure the DHCP and DNS services for the wireless network
 # rename the default configuration file and edit a new one
 sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
 
@@ -155,6 +155,15 @@ wpa_key_mgmt=WPA-PSK
 wpa_pairwise=TKIP
 rsn_pairwise=CCMP
 EOT
+
+## Start the shiny-server on boot (using crontab)
+#write out current crontab
+crontab -l > mycron
+#echo new cron into cron file
+echo "@reboot (/usr/bin/shiny-server)" >> mycron
+#install new cron file
+crontab mycron
+rm mycron
 
 # Reboot
 sudo systemctl reboot
