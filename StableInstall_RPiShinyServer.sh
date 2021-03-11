@@ -35,6 +35,8 @@ sudo su - -c "R -e \"install.packages('shinydashboard', repos='https://cran.rstu
 sudo su - -c "R -e \"install.packages('shinydashboardPlus', repos='https://cran.rstudio.com/')\""
 sudo su - -c "R -e \"install.packages('png', repos='https://cran.rstudio.com/')\""
 sudo su - -c "R -e \"install.packages('dygraphs', repos='https://cran.rstudio.com/')\""
+sudo su - -c "R -e \"install.packages('RColorBrewer', repos='https://cran.rstudio.com/')\""
+sudo su - -c "R -e \"install.packages('leaflet', repos='https://cran.rstudio.com/')\""
 
 # Install cmake: https://github.com/rstudio/shiny-server/wiki/Building-Shiny-Server-from-Source#what-if-a-sufficiently-recent-version-of-cmake-isnt-available
 sudo apt-get -y install cmake
