@@ -11,7 +11,7 @@ The majority of this script is based on the work from [pjaselin](https://github.
 - Resolving Pandoc issues arising from Shiny Server using it's packaged Pandoc distribution by removing this directory and giving the system-installed version precedence
 
 Additional tasks, that are solved in the script, are:
-- Installation of additional R-packages (shinydashboard, shinydashboardPlus, png, dygraphs)
+- Installation of additional R-packages (shinydashboard, shinydashboardPlus, png, dygraphs and others)
 - Setting up the Pi as a wireless access point; devices can connect directly to the Pi in order to see the shiny-App hosted by the Pi, without the need for a network connection (sourced from [raspberrypi.org](https://www.raspberrypi.org/documentation/configuration/wireless/access-point-routed.md))
 
 ## Contents
