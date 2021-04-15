@@ -75,7 +75,7 @@ sudo useradd -r -m shiny
 
 # Create log, config, and application directories
 sudo mkdir -p /var/log/shiny-server
-sudo mkdir -p /srv/shiny-server
+#sudo mkdir -p /srv/shiny-server
 sudo mkdir -p /var/lib/shiny-server
 sudo chown shiny /var/log/shiny-server
 sudo mkdir -p /etc/shiny-server
@@ -103,61 +103,61 @@ sudo cp -r samples/sample-apps/ /srv/shiny-server/
 #cd /srv/shiny-server/
 #sudo git clone https://github.com/Nature40/shinySensoTrail.git
 
-# #####
-# ### Setting up wireless access point ###
-# #####
-# # Install the access point and network management software
-# sudo apt-get -y install hostapd
-# 
-# # Enable the wireless access point service and set it to start when your Raspberry Pi boots
-# sudo systemctl unmask hostapd
-# sudo systemctl enable hostapd
-# 
-# # install dnsmasq software package
-# sudo apt-get -y install dnsmasq
-# 
-# # install netfilter-persistent and its plugin iptables-persistent
-# sudo DEBIAN_FRONTEND=noninteractive apt install -y netfilter-persistent iptables-persistent
-# 
-# # Define the wireless interface IP configuration
-# sudo tee -a /etc/dhcpcd.conf > /dev/null <<EOT
-# 
-# interface wlan0
-#     static ip_address=192.168.4.1/24
-#     nohook wpa_supplicant
-# EOT
-# 
-# ## Configure the DHCP and DNS services for the wireless network
-# # rename the default configuration file and edit a new one
-# sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
-# 
-# # Adding text to dnsmasq.conf
-# sudo tee -a /etc/dnsmasq.conf > /dev/null <<EOT
-# interface=wlan0
-# dhcp-range=192.168.4.2,192.168.4.20,255.255.255.0,24h
-# domain=wlan
-# address=/gw.wlan/192.168.4.1
-# EOT
-# 
-# # ensure WiFi radio is not blocked on the Pi
-# sudo rfkill unblock wlan
-# 
-# # Configure the access point software (country code for germany)
-# sudo tee -a /etc/hostapd/hostapd.conf > /dev/null <<EOT
-# country_code=DE
-# interface=wlan0
-# ssid=shinyPi
-# hw_mode=g
-# channel=7
-# macaddr_acl=0
-# auth_algs=1
-# ignore_broadcast_ssid=0
-# wpa=2
-# wpa_passphrase=shinyTestPWRPi
-# wpa_key_mgmt=WPA-PSK
-# wpa_pairwise=TKIP
-# rsn_pairwise=CCMP
-# EOT
+#####
+### Setting up wireless access point ###
+#####
+# Install the access point and network management software
+sudo apt-get -y install hostapd
+
+# Enable the wireless access point service and set it to start when your Raspberry Pi boots
+sudo systemctl unmask hostapd
+sudo systemctl enable hostapd
+
+# install dnsmasq software package
+sudo apt-get -y install dnsmasq
+
+# install netfilter-persistent and its plugin iptables-persistent
+sudo DEBIAN_FRONTEND=noninteractive apt install -y netfilter-persistent iptables-persistent
+
+# Define the wireless interface IP configuration
+sudo tee -a /etc/dhcpcd.conf > /dev/null <<EOT
+
+interface wlan0
+    static ip_address=192.168.4.1/24
+    nohook wpa_supplicant
+EOT
+
+## Configure the DHCP and DNS services for the wireless network
+# rename the default configuration file and edit a new one
+sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
+
+# Adding text to dnsmasq.conf
+sudo tee -a /etc/dnsmasq.conf > /dev/null <<EOT
+interface=wlan0
+dhcp-range=192.168.4.2,192.168.4.20,255.255.255.0,24h
+domain=wlan
+address=/gw.wlan/192.168.4.1
+EOT
+
+# ensure WiFi radio is not blocked on the Pi
+sudo rfkill unblock wlan
+
+# Configure the access point software (country code for germany)
+sudo tee -a /etc/hostapd/hostapd.conf > /dev/null <<EOT
+country_code=DE
+interface=wlan0
+ssid=shinyPi
+hw_mode=g
+channel=7
+macaddr_acl=0
+auth_algs=1
+ignore_broadcast_ssid=0
+wpa=2
+wpa_passphrase=shinyTestPWRPi
+wpa_key_mgmt=WPA-PSK
+wpa_pairwise=TKIP
+rsn_pairwise=CCMP
+EOT
 
 ## Start the shiny-server on boot (using crontab)
 #write out current crontab

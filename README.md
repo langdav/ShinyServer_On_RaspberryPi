@@ -30,7 +30,12 @@ These scripts are provided "as is" with no warranty of any kind. As such, users 
 
 ## Installation with Stable R
 
-The provided Stable_RPiShinyServer.sh script will install the latest Shiny Server distribution along with the stable R version via the following command (N.B. the script takes awhile to run due to the R library installations):
+1) Flash the latest version of Raspberry Pi OS onto a SD card (e.g. using Raspberry Pi Imager)
+2) Enable SSH (e.g. following [this](https://roboticsbackend.com/enable-ssh-on-raspberry-pi-raspbian/) tutorial)
+3) Boot the Pi and SSH into it
+4) Using a file transfer program (e.g. WinSCP) and create directory '/srv/shiny-server', then move your app-folders into that directory
+5) Start a putty session
+6) The following Stable_RPiShinyServer.sh script will install the latest Shiny Server distribution along with the stable R version via the following command (N.B. the script takes awhile to run due to the R library installations):
 ```bash
 wget -O - https://raw.githubusercontent.com/langdav/ShinyServer_On_RaspberryPi/master/StableInstall_RPiShinyServer.sh | bash
 ```
